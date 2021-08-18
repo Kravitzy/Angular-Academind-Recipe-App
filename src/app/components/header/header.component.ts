@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
-import { CanComponentDeactivate } from "src/app/services/can-deactivate-gaurd.service";
+import { DataStorageService } from "src/app/services/data-storage.service";
 
 @Component({
   selector: "app-header",
@@ -9,7 +7,15 @@ import { CanComponentDeactivate } from "src/app/services/can-deactivate-gaurd.se
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
 
+  constructor(private dataStorageService: DataStorageService){}
   ngOnInit() {}
+
+  onSaveData(){
+    this.dataStorageService.storeRecipes()
+  }
+
+  onFetchData(){
+    this.dataStorageService.fetchRecipes().subscribe();
+  }
 }

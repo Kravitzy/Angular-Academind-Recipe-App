@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,6 +18,8 @@ import { AuthGuard } from './services/auth-gaurd.service';
 import { AuthService } from './services/auth.service';
 import { CanDeactivateGaurd } from './services/can-deactivate-gaurd.service';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
+import { RecipeService } from './services/recipe.service';
+import { CutPipe } from './components/recipes/recipe-list/cut.pipe';
 
 @NgModule({
   declarations: [
@@ -31,14 +33,16 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
     ShoppingEditComponent,
     DropdownDirective,
     RecipeEditComponent,
+    CutPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [ShoppingListService, AuthGuard, AuthService, CanDeactivateGaurd],
+  providers: [ShoppingListService, AuthGuard, AuthService, CanDeactivateGaurd, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
